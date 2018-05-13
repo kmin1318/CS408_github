@@ -41,9 +41,11 @@ location = "%s,%s,%s" % ("35.95", "128.25", "1000km")
 #           '"부산광역시장" OR "부산시장" OR "서병수" -filter:retweets']
 
 for keyword in keywords:
-    lst = []
     f_name = keyword.split('"')[1]+".txt"
-    f = open(f_name, "a", -1, "utf-8")
+    f = open(f_name, "r", -1, "utf-8")
+    lst = f.read().splitlines()
+    f.close()
+    
     cursor = tweepy.Cursor(api.search,
                        q=keyword,
                        since='2018-01-01',
@@ -59,5 +61,6 @@ for keyword in keywords:
             lst.append(data)
     set_lst = list(set(lst))
     dataStr = '\n'.join(set_lst)
+    f = open(f_name, "w", -1, "utf-8")
     f.write(dataStr)
     f.close()
