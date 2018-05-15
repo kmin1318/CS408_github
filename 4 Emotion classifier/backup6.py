@@ -404,3 +404,6 @@ for keyword in keywords:
         ETL.addElement(EE)
         
     emotify.addElement((loc1, loc2, ETL))
+    
+for e in emotify.EmotifyList:
+    print(e)
